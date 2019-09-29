@@ -1,0 +1,50 @@
+﻿@model List<Project_MVC.Logica.Models.ViewModels.ProductsIndexViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{ int colum = 1; }
+@foreach (var item in Model)
+{
+    if (colum == 1)
+    {
+        @Html.Raw("<div class='form-row'>");
+    }
+
+    <div class="cold-md-4">
+
+
+        <div class="card bg-info" style="width: 18rem;padding:15px">
+            <img src="~/Images/Products/@item.Guid@item.Extension" class="card-img-top" alt="..." width="150px" height="250px">
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Description.Substring(0, item.Description.Length > 30 ? 30 : item.Description.Length)</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@item.Price</li>
+                </ul>
+                <a href="#" class="btn btn-primary">
+                    Ir a alguna parte
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    if (colum == 3)
+    {
+        colum = 0;
+        @Html.Raw("</div>")
+        colum++;
+    }
+
+
+}
+
+
+
+
+
+
